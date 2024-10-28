@@ -1,42 +1,22 @@
-"use client"
-
-import DogForm from "./dog-form";
-import DogList from "./dog-list";
-import dogData from "./dogs.json";
+"use client";
 import { useState } from "react";
+import ItemComp from "./item";
+import ItemList from "./item-list";
+import NewItem from "./new-item";
+import itemsData from "./items.json";
 
-export default function AdoptionPage(){
-    //Defensive copy
-    let dogArray = dogData.map( (dog)=> ({...dog}));
-    //Create state variable with copied data
-    const [dogList, setDogList] = useState(dogArray);
+export default function Page(items = itemsData){
+    const [items, setItems] = useState(items);
+    const handleAddItem = (newItem) => {
+        setItems({...items, newItem});
+        console.log(items);
+    };
 
-    const [showForm, setShowForm] = useState(false);
-
-    const addNewDog = (newDogObj) => {
-        setDogList([...dogList, newDogObj]);
-    }
-
-    const removeDog = (event) => {
-        let thisDogList = dogList.filter(
-            (dog) => dog.id != event.target.getAttribute("data-dog-id")
-        );
-        setDogList(thisDogList);
-    }
-
-   const openForm = () => setShowForm(true);
-   const closeForm = () => setShowForm(false);
-
-    return(
+    return (
         <main>
-           {showForm && <DogForm addNewDogFunc={addNewDog} closeFormFunc={closeForm}/>}
-           <div className="w-8 h-8 rounded-full overflow-hidden absolute top-5 right-5 z-0">
-                <button type="button" 
-                onClick={openForm}
-                className="bg-blue-700 text-white text-3xl w-full h-full leading-none"
-                >+</button>
-           </div>
-            <DogList listOfDogs={dogList} removeDogFunc={removeDog}/>
+            <h1>Shopping List</h1>
+            <NewItem onAddItem={handleAddItem}/>
+            <ItemList items={items}/>
         </main>
     )
 }
