@@ -34,7 +34,7 @@ export default function ItemList({items}){
       
       <div>
         <ul>
-          {sortItems().map((item) => (<Item key={items.id} {...item} />))};
+          {sortItems().map((items) => (<Item key={items.id} {...items} />))};
         </ul>
       </div>
       </section>

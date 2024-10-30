@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function NewItem(){
+export default function NewItem({onAddItem}){
     const [quantity, setQuantity] = useState(1);
     const [name, setName]= useState("");
     const [category, setCategory]= useState("produce");
@@ -29,12 +29,7 @@ export default function NewItem(){
             itemCategory: category
         }
 
-        alert(`
-            ID: ${itemObject.itemId} |
-            Added item: ${itemObject.itemName} |
-            Quantity: ${itemObject.itemQuantity} |
-            Category: ${itemObject.itemCategory}`
-        );
+        onAddItem(itemObject);
 
         setId("");
         setName("");

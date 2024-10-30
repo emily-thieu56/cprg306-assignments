@@ -5,11 +5,12 @@ import ItemList from "./item-list";
 import NewItem from "./new-item";
 import itemsData from "./items.json";
 
-export default function Page(items = itemsData){
-    const [items, setItems] = useState(items);
-    const handleAddItem = (newItem) => {
-        setItems({...items, newItem});
-        console.log(items);
+export default function Page(){
+    let itemArray = itemsData.map( (item)=> ({...item}));
+    const [items, setItems] = useState(itemArray);
+    const handleAddItem = (newItemObj) => {
+        setItems({...items, newItemObj});
+        //console.log(items);
     };
 
     return (
