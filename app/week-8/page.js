@@ -1,9 +1,23 @@
-import SingleArt from "./single-art";
+"use client";
+import { useState } from "react";
+import ItemComp from "./item";
+import ItemList from "./item-list";
+import NewItem from "./new-item";
+import itemsData from "./items.json";
 
-export default function PageGallery() {
+export default function Page(){
+    let itemArray = itemsData.map( (item)=> ({...item}));
+    const [items, setItems] = useState(itemArray);
+    const handleAddItem = (newItemObj) => {
+        setItems({...items, newItemObj});
+        //console.log(items);
+    };
+
     return (
         <main>
-            <SingleArt />
+            <h1>Shopping List</h1>
+            <NewItem onAddItem={handleAddItem}/>
+            <ItemList items={items}/>
         </main>
     )
 }
