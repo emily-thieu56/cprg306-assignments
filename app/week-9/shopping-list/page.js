@@ -1,16 +1,16 @@
 "use client";
-import { useUserAuth } from "../_utils/auth-context"
+import ItemComp from "./item";
+import ItemList from "./item-list";
+import { useUserAuth } from "./_utils/auth-context";
 
-export default function ProtectedPage() {
+export default function Page({shoppingList}){
     const {user} = useUserAuth();
-    return(
+    return (
         <main>
-            <header>
-                <h1> Protected Page</h1>
-            </header>
             { user ? (
                 <div>
-                    <p> Hello, {user.displayName}, your ID is: {user.uid}</p>
+                    <h1>Shopping List</h1>
+                    <ItemList item = {shoppingList}/>
                 </div>
             ): (
                 <div>
