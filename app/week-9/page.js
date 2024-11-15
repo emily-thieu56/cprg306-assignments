@@ -1,3 +1,4 @@
+"use client";
 // Import the useUserAuth hook
 import { useUserAuth } from "./_utils/auth-context";
  
