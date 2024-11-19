@@ -1,7 +1,7 @@
 "use client";
 // Import the useUserAuth hook
 import { useUserAuth } from "./_utils/auth-context";
- 
+import Link from "next/link";
 // Use the useUserAuth hook to get the user object and the login and logout functions
 export default function SignInPage (){
 const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -32,7 +32,7 @@ return(
       <p>
         Welcome, {user.displayName} ({user.email})
       </p>
-      <Link href="/week-9/shopping-list/"> Shopping list Page</Link>
+      <Link href="/week-9/shopping-list"> Shopping list Page</Link>
       <div>
         <button type="button" 
         className="text-lg bg-blue-600 text-white rounded px-2 py-1 mt-4"
@@ -52,3 +52,4 @@ return(
  
 );
 }
+
