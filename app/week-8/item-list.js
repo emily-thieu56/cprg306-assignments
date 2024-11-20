@@ -14,15 +14,15 @@ export default function ItemList({items, onItemSelect}){
       setSortBy("category");
     };
     
-    const sortItems = () => {
+    const sortItems = [...items].sort((a, b) => {
       if (sortBy === "name") {
-        return [...items].sort((a,b) => a.name.localeCompare(b.name));
+        return a.name.localeCompare(b.name);
       }
       else if (sortBy === "category") {
-        return [...items].sort((a,b) => a.category.localeCompare(b.category));
+        return a.category.localeCompare(b.category);
       }
-      return items;
-    }
+      return 0;
+    });
     
     return (
       <section>
@@ -34,7 +34,11 @@ export default function ItemList({items, onItemSelect}){
       
       <div>
         <ul>
-          {sortItems().map((items) => (<Item key={items.id} {...items} />))};
+          {sortItems().map((item) => (<Item key={items.id} 
+           name={item.name}
+           quantity={item.quantity}
+           category={item.category}
+           onSelect={onItemSelect} />))};
         </ul>
       </div>
       </section>
